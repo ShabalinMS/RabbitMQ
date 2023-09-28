@@ -1,0 +1,61 @@
+name: dockercompose10220394658712050239
+services:
+  rabbitmq:
+    environment:
+      RABBITMQ_DEFAULT_PASS: rmpassword
+      RABBITMQ_DEFAULT_USER: rmuser
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: -rabbit log_levels [{connection,error},{default,error}]
+        disk_free_limit 2147483648
+    hostname: rabbitmq
+    image: rabbitmq:3.10.7-management
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 15672
+      published: "15672"
+      protocol: tcp
+    - mode: ingress
+      target: 5672
+      published: "5672"
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: bind
+      source: C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\rabbitmq
+      target: /var/lib/rabbitmq
+      bind:
+        create_host_path: true
+  rabbitmqhelper:
+    build:
+      context: C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper
+      dockerfile: RabbitMQHelper/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: rabbitmqhelper
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 443
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\mshabalin\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\mshabalin\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose10220394658712050239_default
