@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jUVrVCDF/uq6pKib7ozNZ0TdKK+7FQjBcG/OH3uws/6cnVM/EQzwgaTrpG5RHr2UCi4a/BMcsonUz4BLWphsqw==",
+  "dgSpecHash": "F2NFVmPLwOXMaIRAW2kpWujsRlTnG0RXSCZMc1QfcCIYOryZG16zF5123mSfisF1Jm8GssDv45CqNqluMmcQhg==",
   "success": true,
   "projectFilePath": "C:\\Users\\mshabalin\\Desktop\\rabbitMQ\\RabbitMQHelper\\RabbitMQHelper\\RabbitMQHelper.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\mshabalin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\mshabalin\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
     "C:\\Users\\mshabalin\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\mshabalin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\mshabalin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\mshabalin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\mshabalin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

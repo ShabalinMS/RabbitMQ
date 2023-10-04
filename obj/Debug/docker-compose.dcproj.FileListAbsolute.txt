@@ -17,3 +17,4 @@ C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\bin\Debug\RabbitMQHelper.dll.
 C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\bin\Debug\Newtonsoft.Json.dll

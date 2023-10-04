@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RabbitMQ.Client;
 using RabbitMQHelper.Utils;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RabbitMQHelper.Controllers
 {
@@ -13,13 +11,12 @@ namespace RabbitMQHelper.Controllers
     public class MessageController : ControllerBase
     {
         /// <summary>
-        /// Получить все сообщения из очереди
+        /// Разрыв соединения
         /// </summary>
         [HttpGet]
-        public string Get()
+        public void Get()
         {
-            (IEnumerable<string> list, bool isSuccess) = new RabbitMQHandler().GetMessage();
-            return list.Count().ToString();
+            UseServiceCostomer.UnSubscribe();
         }
 
         /// <summary>
@@ -28,7 +25,15 @@ namespace RabbitMQHelper.Controllers
         /// <param name="text">Текст сообщения</param>
         [HttpPost]
         public string Post(string text) {
-            return new RabbitMQHandler().SendMessage(text).ToString();
+            string queueName = "test";
+
+            ConnectionRMQ conn = new ConnectionRMQ();
+            using (RabbitMQConnectionManagers rcManager = new RabbitMQConnectionManagers(conn))
+            {
+                rcManager.PublishToQueue(queueName, text);
+            }
+
+            return "true";
         }
     }
 }

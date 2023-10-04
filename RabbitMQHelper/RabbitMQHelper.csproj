@@ -11,13 +11,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="RabbitMQ.Client">
-      <HintPath>..\..\rabbitmq\RabbitMQ.Client.dll</HintPath>
+      <HintPath>..\..\..\Project\ITMaster\Terrasoft.WebApp\Terrasoft.Configuration\Pkg\ITExpert.SberService.Integrations\Assemblies\RabbitMQ.Client\RabbitMQ.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -59,7 +59,7 @@ namespace RabbitMQHelper.Utils
         public GetSettingsMQ()
         {
             _exchangeName = "test";
-            _queueName = "test1";
+            _queueName = "test";
             _routingKey = "test";
         }
 
@@ -71,7 +71,7 @@ namespace RabbitMQHelper.Utils
         /// <exception cref="ArgumentNullException">Аргумента для установки соединения неудачное</exception>
         /// <exception cref="FormatException">Порт не соответствует формату</exception>
         /// <exception cref="RabbitMQ.Client.Exceptions.BrokerUnreachableException">Соединение не установлено</exception>
-        public (IConnection, IModel, string, string, string) OpenConnection()
+        public ConnectionFactory GetConnectionFactory()
         {
             string? userName = System.Configuration.ConfigurationManager.AppSettings[USERNAMECONF];
             if (userName == null) throw new ArgumentNullException($"Fill in the system setup {USERNAMECONF}");
@@ -99,11 +99,7 @@ namespace RabbitMQHelper.Utils
                 Port = portInt
             };
 
-            IConnection conn = factory.CreateConnection();
-
-            WriteLogHelper.WriteLogInfo("Сonnection is set up");
-
-            return (conn, GetRabbitChannel(conn), _exchangeName, _queueName, _routingKey);
+            return factory;
         }
 
         #endregion
@@ -152,7 +148,7 @@ namespace RabbitMQHelper.Utils
 
             model.QueueBind(_queueName, _exchangeName, _routingKey, null);
 
-            WriteLogHelper.WriteLogInfo("The channel is configured");
+            ///WriteLogHelper.WriteLogInfo("The channel is configured");
 
             return model;
         }

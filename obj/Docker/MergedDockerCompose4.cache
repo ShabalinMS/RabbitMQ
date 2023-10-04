@@ -1,0 +1,88 @@
+name: dockercompose10220394658712050239
+services:
+  rabbitmq:
+    environment:
+      RABBITMQ_DEFAULT_PASS: rmpassword
+      RABBITMQ_DEFAULT_USER: rmuser
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: -rabbit log_levels [{connection,error},{default,error}]
+        disk_free_limit 2147483648
+    hostname: rabbitmq
+    image: rabbitmq:3.10.7-management
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 15672
+      published: "15672"
+      protocol: tcp
+    - mode: ingress
+      target: 5672
+      published: "5672"
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: bind
+      source: C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper\rabbitmq
+      target: /var/lib/rabbitmq
+      bind:
+        create_host_path: true
+  rabbitmqhelper:
+    build:
+      context: C:\Users\mshabalin\Desktop\rabbitMQ\RabbitMQHelper
+      dockerfile: RabbitMQHelper/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: RabbitMQHelper
+    container_name: RabbitMQHelper
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: rabbitmqhelper
+    labels:
+      com.microsoft.visual-studio.project-name: RabbitMQHelper
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/RabbitMQHelper.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 443
+      protocol: tcp
+    tty: true
+    volumes:
+    - type: bind
+      source: C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\TokenService.Proxy\linux-x64\net6.0
+      target: /TokenService.Proxy
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\mshabalin\vsdbg\vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\mshabalin\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\mshabalin\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose10220394658712050239_default
